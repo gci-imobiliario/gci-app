@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './core/app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './layout/public/login/login.component';
-
 import { CustomMaterialModule } from './core/material.module';
-import { MatCommonModule} from '@angular/material';
+import { AppRoutingModule } from '../app/core/app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import { LoginComponent } from '../app/layout/public/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     CustomMaterialModule,
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

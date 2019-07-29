@@ -4,11 +4,11 @@ import { LoginComponent } from '../layout/public/login/login.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
   },
   {
-    path: '',
+    path: 'line',
     component: LoginComponent
   }
 ];
