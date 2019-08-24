@@ -1,29 +1,42 @@
+﻿import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { CustomMaterialModule } from './core/material.module';
-import { AppRoutingModule } from '../app/core/app-routing.module';
-import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { LoginComponent } from '../app/layout/public/login/login.component';
-import { SidenavComponent } from './layout/layouts/sidenav/sidenav.component';
-import { DashBoardComponent } from './layout/security/dashboard/dashboard.component';
+import { ReactiveFormsModule }    from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+
+import { AppComponent }  from './app.component';
+import { routing }        from './app.routing';
+
+import { AlertComponent } from './_components';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { HomeComponent } from './home';
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SidenavComponent,
-    DashBoardComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    CustomMaterialModule,
-    FormsModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        routing
+    ],
+    declarations: [
+        AppComponent,
+        AlertComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+        // provider used to create fake backend
+        fakeBackendProvider
+    ],
+    bootstrap: [AppComponent]
 })
+
 export class AppModule { }
