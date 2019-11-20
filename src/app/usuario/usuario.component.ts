@@ -5,9 +5,9 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@app/_services';
 
-@Component({templateUrl: 'login.component.html'})
-export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+@Component({templateUrl: 'usuario.component.html'})
+export class UsuarioComponent implements OnInit {
+    usuarioBuscaForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
@@ -26,9 +26,10 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loginForm = this.formBuilder.group({
-            usuario: ['', Validators.required],
-            senha: ['', Validators.required]
+        this.usuarioBuscaForm = this.formBuilder.group({
+            cpfBusca: ['', Validators.required],
+            nomeBusca: ['', Validators.required],
+            emailBusca: ['', Validators.required]
         });
 
         // get return url from route parameters or default to '/'
@@ -36,21 +37,21 @@ export class LoginComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
+    get f() { return this.usuarioBuscaForm.controls; }
 
     onSubmit() {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.loginForm.invalid) {
+        if (this.usuarioBuscaForm.invalid) {
             return;
         }
+
+        // this.loading = true;
 
         console.log([this.returnUrl]);
 
         this.router.navigate([this.returnUrl]);
-
-        // this.loading = true;
         // this.authenticationService.login(this.f.usuario.value, this.f.usuario.value, this.f.senha.value)
         //     .pipe(first())
         //     .subscribe(

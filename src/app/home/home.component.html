@@ -1,9 +1,12 @@
-﻿<h1>Hi {{currentUser.firstName}}!</h1>
-<p>You're logged in with GCI App!!</p>
-<h3>All registered users:</h3>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
+﻿ 
+<h1>Home</h1>
+<nav>
+    <a routerLink="/" routerLinkActive="active">Home</a>
+<!--  
+    <a routerLink="/superheroes" routerLinkActive="active">Carga Contratos</a>
+    <a routerLink="/admin" routerLinkActive="active">Validação Contratos</a>
+    <a routerLink="/login" routerLinkActive="active">Administração Contratos</a>
+-->
+    <a routerLink="/parametros" routerLinkActive="active">Parâmetros</a>
+</nav>
+

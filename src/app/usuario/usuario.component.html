@@ -1,0 +1,93 @@
+﻿
+<h1>Usuário</h1>
+<form [formGroup]="usuarioBuscaForm" (ngSubmit)="onSubmit()">
+    <h2>Usuários</h2>
+    <h3>Busca</h3>
+    <div class="form-group">
+        <input type="text" formControlName="cpfBusca" class="form-control" placeholder="CPF" 
+            [ngClass]="{ 'is-invalid': submitted && f.cpfBusca.errors }" />
+        <div *ngIf="submitted && f.cpfBusca.errors" class="invalid-feedback">
+            <div *ngIf="f.cpfBusca.errors.required">CPF é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" formControlName="nomeBusca" class="form-control" placeholder="Nome" 
+            [ngClass]="{ 'is-invalid': submitted && f.nomeBusca.errors }" />
+        <div *ngIf="submitted && f.nomeBusca.errors" class="invalid-feedback">
+            <div *ngIf="f.nomeBusca.errors.required">Nome é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+            <input type="text" formControlName="emailBusca" class="form-control" placeholder="E-mail" 
+                [ngClass]="{ 'is-invalid': submitted && f.emailBusca.errors }" />
+            <div *ngIf="submitted && f.emailBusca.errors" class="invalid-feedback">
+                <div *ngIf="f.emailBusca.errors.required">E-mail é obrigatório</div>
+            </div>
+        </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Incluir Novo Usuário</button>
+        <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
+</form>
+
+<!-- 
+<form [formGroup]="usuarioCadastroForm" (ngSubmit)="onSubmit()">
+    <h3>Cadastro do Usuário</h3>
+    <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" formControlName="cpf" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" />
+        <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+            <div *ngIf="f.cpf.errors.required">CPF é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" formControlName="nome" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.nome.errors }" />
+        <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+            <div *ngIf="f.nome.errors.required">Nome é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="codigoIntegracao">Código de Integração</label>
+        <input type="text" formControlName="codigoIntegracao" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.codigoIntegracao.errors }" />
+        <div *ngIf="submitted && f.codigoIntegracao.errors" class="invalid-feedback">
+            <div *ngIf="f.codigoIntegracao.errors.required">Código de Integração é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="text" formControlName="telefone" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.telefone.errors }" />
+        <div *ngIf="submitted && f.telefone.errors" class="invalid-feedback">
+            <div *ngIf="f.telefone.errors.required">Telefone é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ramal">Ramal</label>
+        <input type="text" formControlName="ramal" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.ramal.errors }" />
+        <div *ngIf="submitted && f.ramal.errors" class="invalid-feedback">
+            <div *ngIf="f.ramal.errors.required">Ramal é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="celular">Celular</label>
+        <input type="text" formControlName="celular" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.celular.errors }" />
+        <div *ngIf="submitted && f.celular.errors" class="invalid-feedback">
+            <div *ngIf="f.celular.errors.required">Celular é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" formControlName="email" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">E-mail é obrigatório</div>
+        </div>
+    </div>
+</form> 
+-->
