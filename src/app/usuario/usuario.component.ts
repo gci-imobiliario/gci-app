@@ -8,8 +8,10 @@ import { AlertService, AuthenticationService } from '@app/_services';
 @Component({templateUrl: 'usuario.component.html'})
 export class UsuarioComponent implements OnInit {
     usuarioBuscaForm: FormGroup;
+    usuarioCadastroForm: FormGroup;
     loading = false;
     submitted = false;
+    showCreateComponent:boolean = false;
     returnUrl: string;
 
     constructor(
@@ -27,9 +29,18 @@ export class UsuarioComponent implements OnInit {
 
     ngOnInit() {
         this.usuarioBuscaForm = this.formBuilder.group({
-            cpfBusca: ['', Validators.required],
-            nomeBusca: ['', Validators.required],
-            emailBusca: ['', Validators.required]
+            cpfBusca: [''],
+            nomeBusca: [''],
+            emailBusca: [''],
+        });
+        this.usuarioCadastroForm = this.formBuilder.group({
+            cpf: ['', Validators.required],
+            nome: ['', Validators.required],
+            codigoIntegracao: ['', Validators.required],
+            telefone: ['', Validators.required],
+            ramal: ['', Validators.required],
+            celular: ['', Validators.required],
+            email: ['', Validators.required]
         });
 
         // get return url from route parameters or default to '/'
@@ -37,17 +48,17 @@ export class UsuarioComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.usuarioBuscaForm.controls; }
+    get f() { return this.usuarioCadastroForm.controls; }
 
     onSubmit() {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.usuarioBuscaForm.invalid) {
+        if (this.usuarioCadastroForm.invalid) {
             return;
         }
 
-        // this.loading = true;
+        this.loading = true;
 
         console.log([this.returnUrl]);
 
@@ -62,5 +73,13 @@ export class UsuarioComponent implements OnInit {
         //             this.alertService.error(error);
         //             this.loading = false;
         //         });
+    }
+
+    onCreateUser() {
+        if (this.showCreateComponent) {
+            this.showCreateComponent = false;
+        } else {
+            this.showCreateComponent = true;
+        }
     }
 }
